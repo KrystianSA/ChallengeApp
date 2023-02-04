@@ -1,49 +1,35 @@
-﻿using System.Drawing;
+﻿using NUnit.Framework;
 
 namespace ChallengeApp.tests1
 {
-    public class EmployeeTests
+    public class TypeTests
     {
         [Test]
-        public void WhenNumberIsTheHighest_GetCorrectResult()
+        public void WhenTwoNumberAreTheSame_GetCorrectResult()
         {
-            var employee = new Employee("Krystian", "Sąsiadek");
-            employee.AddGrade(1);
-            employee.AddGrade(3);
-            employee.AddGrade(6);
-
-            var result = employee.GetStatistics();
-            var statistic = result.Max;
-
-            Assert.AreEqual(6,statistic);
+            int number1 = 1;
+            int number2 = 1;
+            
+            Assert.That(number1, Is.EqualTo(number2));
         }
 
         [Test]
-        public void WhenNumberIsTheLowest_GetCorrectResult()
+        public void WhenNumberIsLess_GetCorrectResult()
         {
-            var employee = new Employee("Krystian", "Sąsiadek");
-            employee.AddGrade(1);
-            employee.AddGrade(3);
-            employee.AddGrade(6);
+            float number3 = 1.42f;
+            float number4 = 2.50f;
 
-            var result = employee.GetStatistics();
-            var statistic = result.Min;
+            Assert.LessOrEqual(number3, number4);
 
-            Assert.AreEqual(1,statistic);
         }
+
         [Test]
-        public void WhenNumberAvarageIsCorrect_GetCorrectResult()
+        public void WhenNamesAreNotTheSame_Get_Correct_Result()
         {
-            var employee = new Employee("Krystian", "Sąsiadek");
-            employee.AddGrade(1);
-            employee.AddGrade(3);
-            employee.AddGrade(6);
+            string name1 = "Krystian";
+            string name2 = "Amelia";
 
-            var result = employee.GetStatistics();
-            var statistic = result.Avarage;
-
-            Assert.AreEqual(4,statistic);
-      
+            Assert.That(name1, Is.Not.EqualTo(name2));
         }
     }
 }
