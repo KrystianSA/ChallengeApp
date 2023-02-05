@@ -1,35 +1,61 @@
 ﻿using NUnit.Framework;
-
 namespace ChallengeApp.tests1
 {
-    public class TypeTests
+    public class EmployeeTests
     {
         [Test]
-        public void WhenTwoNumberAreTheSame_GetCorrectResult()
+        public void WhenNumberIsTheHighest_GetCorrectResult()
         {
-            int number1 = 1;
-            int number2 = 1;
-            
-            Assert.That(number1, Is.EqualTo(number2));
+            var employee = new Employee("Krystian", "Sąsiadek");
+            employee.AddGrade(1);
+            employee.AddGrade(3);
+            employee.AddGrade(6);
+
+            var result = employee.GetStatistics();
+            var statistic = result.Max;
+
+            Assert.That(6, Is.EqualTo(statistic));
         }
 
         [Test]
-        public void WhenNumberIsLess_GetCorrectResult()
+        public void WhenNumberIsTheLowest_GetCorrectResult()
         {
-            float number3 = 1.42f;
-            float number4 = 2.50f;
+            var employee = new Employee("Krystian", "Sąsiadek");
+            employee.AddGrade(1);
+            employee.AddGrade(3);
+            employee.AddGrade(6);
 
-            Assert.LessOrEqual(number3, number4);
+            var result = employee.GetStatistics();
+            var statistic = result.Min;
 
+            Assert.That(1, Is.EqualTo(statistic));
+        }
+        [Test]
+        public void WhenNumberAvarageIsCorrect_GetCorrectResult()
+        {
+            var employee = new Employee("Krystian", "Sąsiadek");
+            employee.AddGrade(3);
+            employee.AddGrade(3);
+            employee.AddGrade(6);
+
+            var result = employee.GetStatistics();
+            var statistic = result.Avarage;
+
+            Assert.That(4, Is.EqualTo(statistic));
         }
 
         [Test]
-        public void WhenNamesAreNotTheSame_Get_Correct_Result()
+        public void WhenAvarageLetterIsCorrect_GetCorrrectResult()
         {
-            string name1 = "Krystian";
-            string name2 = "Amelia";
+            var employee = new Employee("Krystian", "Sąsiadek");
+            employee.AddGrade(30);
+            employee.AddGrade(30);
+            employee.AddGrade(60);
 
-            Assert.That(name1, Is.Not.EqualTo(name2));
+            var statistics = employee.GetStatistics();
+
+            Assert.That('C',Is.EqualTo(statistics.AvarageLetter));
+
         }
     }
 }

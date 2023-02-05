@@ -1,34 +1,39 @@
 ﻿using ChallengeApp;
 
-var employee = new Employee("Krystian", "Sąsiadek");
-employee.AddGrade("1");
-employee.AddGrade(1);
-employee.AddGrade(1);
-employee.AddGrade(1);
-var statistics1 = employee.GetStatistics();
-var statistics2 = employee.GetStatisticsWithFor();
-var statistics3 = employee.GetStatisticsWithDoWhile();
-var statistics4 = employee.GetStatisticsWithWhile();
+Console.WriteLine("Witamy w programie XYZ do oceny pracowników");
+Console.WriteLine("===========================================");
+Console.WriteLine("");
 
-Console.WriteLine("Pętla foreach");
-Console.WriteLine($"Avarage: {statistics1.Avarage:N2} ");
-Console.WriteLine($"Min: {statistics1.Min} ");
-Console.WriteLine($"Max: {statistics1.Max} ");
+Console.WriteLine("Wpisz nowego pracownika. Następnie podaj jego oceny. Zakończenie wpisywania ocen sygnalizuje przycisk 'q'");
+Console.WriteLine("Oceny są wystawiane w skali literowej od A do E, gdzie A oznacza najwyższą, E najniższą.");
 Console.WriteLine(" ");
 
-Console.WriteLine("Pętla for");
-Console.WriteLine($"Avarage: {statistics2.Avarage:N2} ");
-Console.WriteLine($"Min: {statistics2.Min} ");
-Console.WriteLine($"Max: {statistics2.Max} ");
-Console.WriteLine(" ");
+Console.WriteLine("Podaj imię:  ");
+string name = Console.ReadLine();
 
-Console.WriteLine("Pętla do while");
-Console.WriteLine($"Avarage: {statistics3.Avarage:N2} ");
-Console.WriteLine($"Min: {statistics3.Min} ");
-Console.WriteLine($"Max: {statistics3.Max} ");
-Console.WriteLine(" ");
+Console.WriteLine("Podaj nazwisko:  ");
+string surname = Console.ReadLine();
 
-Console.WriteLine("Pętla while");
-Console.WriteLine($"Avarage: {statistics4.Avarage:N2} ");
-Console.WriteLine($"Min: {statistics4.Min} ");
-Console.WriteLine($"Max: {statistics4.Max} ");
+var employee = new Employee(name, surname);
+
+while (true)
+{
+    Console.WriteLine("Podaj kolejną ocenę pracownika:  ");
+    var input = Console.ReadLine();
+    if (input == "q")
+    {
+        break;
+    }
+    employee.AddGrade(input);
+}
+
+var Statistics = employee.GetStatistics();
+
+Console.WriteLine(" ");
+Console.Write($"{employee.Name}");
+Console.Write("  ");
+Console.WriteLine($"{employee.Surname}");
+Console.WriteLine($"Ocena średnia: {Statistics.Avarage:N2} ");
+Console.WriteLine($"Ocena mininalna: {Statistics.Min} ");
+Console.WriteLine($"Ocena maksymalna: {Statistics.Max} ");
+Console.WriteLine($"Ocena końcowa :{Statistics.AvarageLetter}");
