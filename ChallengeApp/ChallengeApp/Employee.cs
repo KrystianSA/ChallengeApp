@@ -2,7 +2,6 @@
 {
     public class Employee 
     {
-
         private List<float> grades = new List<float>();
 
         public Employee(string name, string surname)
@@ -16,15 +15,20 @@
         
         public void AddGrade(float grade) 
         {
-            if(grade>=0 && grade <=100) { this.grades.Add(grade); }
-            else { Console.WriteLine("invalid grade value"); }
+            if(grade>=0 && grade <=100)
+            { 
+                this.grades.Add(grade); 
+            }
+            else
+            {
+                throw new Exception("invalid grade value");
+            }
         }
 
         public void AddGrade(double grade)
         {
             float valueInFloat = (float)grade;
-            if(grade>=0 && grade <=100) { this.grades.Add(valueInFloat); }
-            else { Console.WriteLine("invalid grade value"); }
+            this.AddGrade(valueInFloat);
         }
 
         public void AddGrade(string grade)
@@ -33,7 +37,7 @@
             {
                 this.AddGrade(result);
             }
-            else { Console.WriteLine("string is not float"); }
+            else { throw new Exception("invalid grade value"); }
         }
 
         public void AddGrade(char grade) 
@@ -60,8 +64,10 @@
                 case 'e':
                     this.grades.Add(80);
                     break;
+                default:
+                    throw new Exception("invalid grade value");
+                    break;
             }
-          
         }
 
         public Statistics GetStatistics() 
@@ -80,7 +86,7 @@
 
             statistics.Avarage = statistics.Avarage / this.grades.Count;
 
-            switch(statistics.Avarage)
+            switch (statistics.Avarage)
             {
                 case var avarage when avarage >= 80:
                     statistics.AvarageLetter = 'A';
@@ -98,7 +104,6 @@
                     statistics.AvarageLetter = 'E';
                     break;
             }
-
             return statistics;
         }
 
