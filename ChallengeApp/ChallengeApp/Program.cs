@@ -15,7 +15,11 @@ string name = Console.ReadLine();
 Console.WriteLine("Podaj nazwisko:  ");
 string surname = Console.ReadLine();
 
-var employee = new Employee(name, surname);
+Console.WriteLine("Podaj wiek:  ");
+string age = Console.ReadLine();
+
+var employee = new Employee(name,surname,age);
+
 
 while (true)
 {
@@ -34,7 +38,9 @@ var Statistics = employee.GetStatistics();
 Console.WriteLine(" ");
 Console.Write($"{employee.Name}");
 Console.Write("  ");
-Console.WriteLine($"{employee.Surname}");
+Console.Write($"{employee.Surname}");
+Console.Write("  ");
+Console.WriteLine($"Wiek : {employee.Age}");
 Console.WriteLine($"Ocena średnia: {Statistics.Avarage:N2} ");
 Console.WriteLine($"Ocena mininalna: {Statistics.Min} ");
 Console.WriteLine($"Ocena maksymalna: {Statistics.Max} ");
