@@ -1,10 +1,9 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
-
         private List<float> grades = new List<float>();
-        public Employee(string name, string surname, string age)
+        public Supervisor(string name, string surname, string age)
         {
             this.Name = name;
             this.Surname = surname;
@@ -43,25 +42,35 @@
             {
                 switch (grade)
                 {
-                    case "A":
-                    case "a":
+                    case "6":
                         this.grades.Add(100);
                         break;
-                    case "B":
-                    case "b":
+                    case "5":
                         this.grades.Add(80);
                         break;
-                    case "C":
-                    case "c":
-                        this.grades.Add(80);
+                    case "4":
+                        this.grades.Add(60);
                         break;
-                    case "D":
-                    case "d":
-                        this.grades.Add(80);
+                    case "3":
+                        this.grades.Add(40);
                         break;
-                    case "E":
-                    case "e":
-                        this.grades.Add(80);
+                    case "+3":
+                        this.grades.Add(35);
+                        break;
+                    case "-3":
+                        this.grades.Add(35);
+                        break;
+                    case "2":
+                        this.grades.Add(25);
+                        break;
+                    case "+2":
+                        this.grades.Add(25);
+                        break;
+                    case "-2":
+                        this.grades.Add(20);
+                        break;
+                    case "1":
+                        this.grades.Add(0);
                         break;
                     default:
                         throw new Exception("invalid grade value");
@@ -107,6 +116,3 @@
         }
     }
 }
-
-
-
