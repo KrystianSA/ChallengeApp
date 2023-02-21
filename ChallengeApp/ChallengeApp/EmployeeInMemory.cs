@@ -1,20 +1,14 @@
 ﻿namespace ChallengeApp
 {
-    public class Supervisor : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-        public Supervisor(string name, string surname, string age)
+        public EmployeeInMemory(string name, string surname) : base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Age = age;
+
         }
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string Age { get; private set; }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -26,19 +20,19 @@
             }
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             float valueInFloat = (float)grade;
             this.AddGrade(valueInFloat);
         }
 
-        public  void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
-            float intInFloat = (float)grade;
-            this.AddGrade(intInFloat);
+            float valueInFloat = (float)grade;
+            this.AddGrade(valueInFloat);
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -48,35 +42,25 @@
             {
                 switch (grade)
                 {
-                    case "6":
+                    case "A":
+                    case "a":
                         this.grades.Add(100);
                         break;
-                    case "5":
+                    case "B":
+                    case "b":
                         this.grades.Add(80);
                         break;
-                    case "4":
-                        this.grades.Add(60);
+                    case "C":
+                    case "c":
+                        this.grades.Add(80);
                         break;
-                    case "3":
-                        this.grades.Add(40);
+                    case "D":
+                    case "d":
+                        this.grades.Add(80);
                         break;
-                    case "+3":
-                        this.grades.Add(35);
-                        break;
-                    case "-3":
-                        this.grades.Add(35);
-                        break;
-                    case "2":
-                        this.grades.Add(25);
-                        break;
-                    case "+2":
-                        this.grades.Add(25);
-                        break;
-                    case "-2":
-                        this.grades.Add(20);
-                        break;
-                    case "1":
-                        this.grades.Add(0);
+                    case "E":
+                    case "e":
+                        this.grades.Add(80);
                         break;
                     default:
                         throw new Exception("invalid grade value");
@@ -84,13 +68,7 @@
                 }
             }
         }
-
-        public void AddGrade(char grade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Avarage = 0;
@@ -128,3 +106,4 @@
         }
     }
 }
+   
