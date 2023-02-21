@@ -127,5 +127,10 @@
             }
             return statistics;
         }
+
+        public override void AddGrade(char grade)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
