@@ -3,6 +3,9 @@
     public class EmployeeInFile : EmployeeBase
     {
         private const string fileName = "grades.txt";
+
+        public override event GradeAddedDelegate GradeAdded;
+
         public EmployeeInFile(string name, string surname) : base(name, surname)
         {
         }
@@ -12,6 +15,11 @@
             using (var writer = File.AppendText(fileName))
             {
                 writer.WriteLine(grade);
+            }
+
+            if (GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
             }
         }
 
@@ -63,12 +71,12 @@
                 }
             }
         }
-        
+
         public override Statistics GetStatistics()
         {
-                var gradesFromFile = this.ReadGradesFromFile();
-                var result = this.CountStatistics(gradesFromFile);
-                return result;
+            var gradesFromFile = this.ReadGradesFromFile();
+            var result = this.CountStatistics(gradesFromFile);
+            return result;
         }
 
         private List<float> ReadGradesFromFile()
